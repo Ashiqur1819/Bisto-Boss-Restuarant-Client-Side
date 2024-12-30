@@ -1,14 +1,17 @@
-import logo from "../assets/logo.png"
+import { Link} from "react-router-dom";
 
 const Navbar = () => {
 
     const links = (
       <>
-        <li className="text-base font-medium">
-          <a>Home</a>
+        <li className="font-medium text-white">
+          <Link to="/">Home</Link>
         </li>
-        <li className="text-base font-medium">
-          <a>Contact Us</a>
+        <li className="font-medium text-white">
+          <Link to="/menu">Our Menu</Link>
+        </li>
+        <li className="font-medium text-white">
+          <Link to="/products">Our Products</Link>
         </li>
       </>
     );
@@ -35,9 +38,9 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 text-sm shadow uppercase  text-white"
             >
-             {links}
+              {links}
             </ul>
           </div>
           <div className="flex flex-col items-center justify-center">
@@ -46,7 +49,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu-horizontal text-sm px-1 uppercase gap-6 text-white">
             {links}
           </ul>
         </div>

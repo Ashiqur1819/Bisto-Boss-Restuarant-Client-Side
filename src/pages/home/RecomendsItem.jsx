@@ -18,7 +18,6 @@ const RecomendsItem = () => {
         });
     }, [setMenu]);
 
-    console.log(menu)
 
     return (
       <section>

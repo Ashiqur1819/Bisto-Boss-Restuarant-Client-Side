@@ -17,7 +17,7 @@ const MenuItem = ({menuItem}) => {
             </h3>
             <p className="text-[#D99904] font-medium text-lg">${price}</p>
           </div>
-          <p className="pr-12 text-gray-500">{recipe}</p>
+          <p className="pr-12 text-gray-500 text-base">{recipe}</p>
         </div>
       </div>
     );
