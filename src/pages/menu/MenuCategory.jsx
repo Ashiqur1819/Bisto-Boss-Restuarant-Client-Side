@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 const MenuCategory = () => {
 
-    const {menu} = useMenu();
+    const [menu] = useMenu();
 
     const offeredMenu = menu.filter((item) => item.category === "offered");
     const dessertMenu = menu.filter((item) => item.category === "dessert");

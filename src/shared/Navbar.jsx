@@ -1,6 +1,22 @@
-import { Link} from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink} from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
+import { FaCartPlus } from "react-icons/fa";
+import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
+import { toast } from "react-toastify";
+
 
 const Navbar = () => {
+
+  const { user, logOut} = useContext(AuthContext)
+  const [cart] = useCart()
+  const [isAdmin] = useAdmin()
+
+  const handleLogOut = () => {
+    logOut()
+  }
+
 
     const links = (
       <>
@@ -13,11 +29,35 @@ const Navbar = () => {
         <li className="font-medium text-white">
           <Link to="/products">Our Products</Link>
         </li>
+        {user && isAdmin && (
+          <li className="font-medium text-white">
+            <Link to="/dashboard/adminHome">Dashboard</Link>
+          </li>
+        )}
+        {user && !isAdmin && (
+          <li className="font-medium text-white">
+            <Link to="/dashboard/userHome">Dashboard</Link>
+          </li>
+        )}
+        {user ? (
+          <li>
+            <button
+              className="font-bold uppercase underline text-red-600"
+              onClick={handleLogOut}
+            >
+              Logout
+            </button>
+          </li>
+        ) : (
+          <li className="font-medium text-white">
+            <Link to="/login">Login</Link>
+          </li>
+        )}
       </>
     );
 
     return (
-      <div className="navbar fixed z-10 bg-[#0000007e] text-white px-3 md:px-6 lg:px-10 py-4 max-w-screen-xl">
+      <div className="navbar fixed z-10 bg-[#000000ad] text-white px-3 md:px-6 lg:px-10 py-4 max-w-screen-xl">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -53,8 +93,18 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn">Button</a>
+        <div className="navbar-end gap-2">
+          <div>
+              <NavLink to="/dashboard">
+            <button className="btn">
+                <FaCartPlus className="text-2xl text-gray-500"></FaCartPlus>
+                <div className="badge badge-secondary">{cart.length}</div>
+            </button>
+              </NavLink>
+          </div>
+          {user && (
+            <img src={user?.photoURL} referrerPolicy="no-referrer" className="w-16 rounded-full" alt="" />
+          )}
         </div>
       </div>
     );

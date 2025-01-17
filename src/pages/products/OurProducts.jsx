@@ -14,7 +14,7 @@ const OurProducts = () => {
   const categories = ["salad", "pizza", "soup", "dessert", "drinks"]
   const {category} = useParams()
   const initialIndex = categories.indexOf(category)
-  const { menu } = useMenu();
+  const  [menu]  = useMenu();
   const [tabIndex, setTabindex] = useState(initialIndex)
 
   const drinksMenu = menu.filter((item) => item.category === "drinks");
@@ -35,7 +35,7 @@ const OurProducts = () => {
           subTitle={"Would you like to try a dish?"}
         ></Cover>
       </div>
-      <div className="mt-20">
+      <div className="mt-20 px-3 md:px-6 lg:px-10">
         <Tabs defaultIndex={tabIndex == -1 ? 0 : tabIndex} onSelect={(index) => setTabindex(index)}>
           <TabList
             className={" uppercase font-semibold text-center text-gray-800"}
